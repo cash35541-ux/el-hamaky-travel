@@ -14,537 +14,132 @@
         }
         
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), 
+                        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074') center/cover;
         }
-
+        
         .flight-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
         .flight-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #f59e0b;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover:after {
-            width: 100%;
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-gray-50">
 
     <!-- HEADER -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-amber-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold">✈️</div>
-                    <div>
-                        <h1 class="text-2xl font-bold tracking-tight">El Hamaky Travel</h1>
-                        <p class="text-xs text-gray-500 -mt-1">Voli nel mondo dal 2018</p>
-                    </div>
-                </div>
-                
-                <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                    <a href="#" onclick="showSection('home')" class="nav-link text-gray-700 hover:text-amber-600">Home</a>
-                    <a href="#" onclick="showSection('voli')" class="nav-link text-gray-700 hover:text-amber-600">Voli</a>
-                    <a href="#" onclick="showSection('destinazioni')" class="nav-link text-gray-700 hover:text-amber-600">Destinazioni</a>
-                    <a href="#" class="nav-link text-gray-700 hover:text-amber-600">Offerte</a>
-                    <a href="#" onclick="showSection('contatti')" class="nav-link text-gray-700 hover:text-amber-600">Contatti</a>
-                </nav>
-
-                <div class="flex items-center gap-4">
-                    <button onclick="toggleLanguage()" 
-                            class="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-xl flex items-center gap-2">
-                        <i class="fa-solid fa-globe"></i>
-                        <span id="lang-btn">IT</span>
-                    </button>
-                    <button onclick="showLoginModal()" 
-                            class="px-6 py-2.5 text-sm font-semibold border border-gray-300 rounded-2xl hover:bg-gray-50 transition">
-                        Accedi
-                    </button>
-                    <button onclick="showBookingModal()" 
-                            class="px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold rounded-2xl transition flex items-center gap-2">
-                        <i class="fa-solid fa-plane"></i>
-                        Prenota ora
-                    </button>
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="text-4xl">✈️</div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">El Hamaky Travel</h1>
+                    <p class="text-xs text-gray-500 -mt-1">Biglietti aerei tutto il mondo</p>
                 </div>
             </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#" class="hover:text-amber-600">Home</a>
+                <a href="#" class="hover:text-amber-600">Voli</a>
+                <a href="#" class="hover:text-amber-600">Destinazioni</a>
+                <a href="#" class="hover:text-amber-600">Offerte</a>
+                <a href="#" class="hover:text-amber-600">Contatti</a>
+            </nav>
+            <button onclick="alert('Area riservata in sviluppo')" class="px-5 py-2.5 border rounded-2xl hover:bg-gray-50">Accedi</button>
         </div>
     </header>
 
     <!-- HERO -->
-    <section id="home" class="hero-bg h-screen flex items-center text-white">
-        <div class="max-w-5xl mx-auto px-6 pt-20">
-            <div class="max-w-2xl">
-                <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
-                    Il tuo viaggio<br>inizia qui
-                </h2>
-                <p class="text-xl text-amber-100 mb-10">
-                    Migliori prezzi su voli in tutto il mondo. Aggiorniamo le tariffe in tempo reale.
-                </p>
-            </div>
-
-            <!-- SEARCH FORM -->
-            <div class="bg-white rounded-3xl shadow-2xl p-8 text-gray-900 max-w-4xl">
-                <div class="flex gap-2 mb-6 border-b pb-4">
-                    <button onclick="setTripType(0)" id="trip0" 
-                            class="flex-1 py-3 rounded-2xl font-semibold bg-amber-100 text-amber-700">Andata e Ritorno</button>
-                    <button onclick="setTripType(1)" id="trip1" 
-                            class="flex-1 py-3 rounded-2xl font-semibold text-gray-500 hover:bg-gray-100">Solo Andata</button>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div>
-                        <label class="block text-xs font-medium text-gray-500 mb-1">PARTENZA DA</label>
-                        <select id="from" class="w-full py-4 px-5 border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500">
-                            <option value="FCO">Roma Fiumicino (FCO)</option>
-                            <option value="MXP">Milano Malpensa (MXP)</option>
-                            <option value="LIN">Milano Linate (LIN)</option>
-                            <option value="NAP">Napoli (NAP)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-500 mb-1">DESTINAZIONE</label>
-                        <select id="to" class="w-full py-4 px-5 border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500">
-                            <option value="JFK">New York (JFK)</option>
-                            <option value="DXB">Dubai (DXB)</option>
-                            <option value="CAI">Il Cairo (CAI)</option>
-                            <option value="LHR">Londra (LHR)</option>
-                            <option value="MAD">Madrid (MAD)</option>
-                            <option value="PAR">Parigi (CDG)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-500 mb-1">DATA PARTENZA</label>
-                        <input type="date" id="departure" value="2026-06-15" 
-                               class="w-full py-4 px-5 border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-500 mb-1">Passeggeri</label>
-                        <select id="passengers" class="w-full py-4 px-5 border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500">
-                            <option value="1">1 Adulto</option>
-                            <option value="2" selected>2 Adulti</option>
-                            <option value="3">3 Adulti</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button onclick="searchFlights()" 
-                        class="mt-8 w-full bg-amber-600 hover:bg-amber-700 transition py-6 text-white text-xl font-semibold rounded-3xl flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    CERCA VOLI
+    <section class="hero-bg h-screen flex items-center text-white">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                Il tuo viaggio inizia qui
+            </h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Migliori prezzi su voli internazionali. Tariffe aggiornate in tempo reale.</p>
+            
+            <div class="bg-white text-gray-900 rounded-3xl p-8 max-w-4xl mx-auto shadow-2xl">
+                <button onclick="searchFlightsDemo()" 
+                        class="w-full bg-amber-600 hover:bg-amber-700 text-white py-6 text-2xl font-semibold rounded-2xl transition">
+                    CERCA VOLI ORA ✈️
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- FLIGHTS SECTION -->
-    <section id="voli" class="py-20 bg-white">
+    <!-- VOLI IN EVIDENZA -->
+    <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-end mb-10">
-                <div>
-                    <h2 class="text-4xl font-bold">Voli in evidenza</h2>
-                    <p class="text-gray-600 mt-2">Tariffe aggiornate in tempo reale • Ultimo aggiornamento: <span id="last-update">ora</span></p>
-                </div>
-                <button onclick="refreshFlights()" 
-                        class="flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-2xl hover:bg-gray-50">
-                    <i class="fa-solid fa-arrows-rotate"></i>
-                    Aggiorna voli
-                </button>
-            </div>
-
-            <div id="flights-container" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                <!-- Popolato da JavaScript -->
+            <h2 class="text-4xl font-bold text-center mb-4">Voli in Evidenza</h2>
+            <p class="text-center text-gray-600 mb-12">Tariffe aggiornate pochi minuti fa</p>
+            
+            <div id="flights-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- JS popola qui -->
             </div>
         </div>
     </section>
 
-    <!-- DESTINAZIONI -->
-    <section id="destinazioni" class="py-20 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Destinazioni più richieste</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                <!-- Cards generate da JS -->
-            </div>
-        </div>
-    </section>
+    <script>
+        const flights = [
+            {from: "FCO", to: "JFK", price: 489, duration: "9h 15m", airline: "ITA Airways"},
+            {from: "MXP", to: "DXB", price: 329, duration: "6h 45m", airline: "Emirates"},
+            {from: "FCO", to: "CAI", price: 189, duration: "3h 50m", airline: "EgyptAir"},
+            {from: "NAP", to: "MAD", price: 109, duration: "2h 45m", airline: "Ryanair"},
+            {from: "FCO", to: "LHR", price: 149, duration: "2h 55m", airline: "British Airways"}
+        ];
+
+        function renderFlights() {
+            const container = document.getElementById('flights-container');
+            container.innerHTML = '';
+            
+            flights.forEach(flight => {
+                const card = document.createElement('div');
+                card.className = "flight-card bg-white border border-gray-100 rounded-3xl overflow-hidden";
+                card.innerHTML = `
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <p class="text-2xl font-bold">${flight.from} → ${flight.to}</p>
+                                <p class="text-gray-500">${flight.airline}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-4xl font-bold text-amber-600">${flight.price}€</p>
+                                <p class="text-sm text-gray-500">a persona</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <div>Durata: <span class="font-medium">${flight.duration}</span></div>
+                            <button onclick="bookFlight('${flight.from}', '${flight.to}', ${flight.price})" 
+                                    class="bg-amber-600 text-white px-8 py-3 rounded-2xl hover:bg-amber-700 transition">
+                                Prenota
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function bookFlight(from, to, price) {
+            alert(`🎉 Prenotazione avviata!\n\n${from} → ${to}\nPrezzo: ${price}€\n\nRiceverai i dettagli via email.`);
+        }
+
+        function searchFlightsDemo() {
+            alert("🔍 Ricerca voli attivata!\n\nProva a cliccare sui bottoni 'Prenota' qui sotto.");
+            window.scrollTo({ top: 800, behavior: 'smooth' });
+        }
+
+        // Avvia il sito
+        window.onload = renderFlights;
+    </script>
 
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-gray-400 py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
-                <div>
-                    <div class="flex items-center gap-3 text-white mb-6">
-                        <div class="w-9 h-9 bg-amber-500 rounded-2xl flex items-center justify-center text-2xl">✈️</div>
-                        <span class="font-bold text-2xl">El Hamaky</span>
-                    </div>
-                    <p class="text-sm">Agenzia viaggi specializzata in voli intercontinentali con i migliori prezzi di mercato.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Servizi</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="hover:text-white">Voli low cost</a></li>
-                        <li><a href="#" class="hover:text-white">Business Class</a></li>
-                        <li><a href="#" class="hover:text-white">Pacchetti vacanza</a></li>
-                        <li><a href="#" class="hover:text-white">Assicurazione viaggio</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Azienda</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="hover:text-white">Chi siamo</a></li>
-                        <li><a href="#" class="hover:text-white">Lavora con noi</a></li>
-                        <li><a href="#" class="hover:text-white">Contatti</a></li>
-                        <li><a href="#" class="hover:text-white">Blog viaggi</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Contatti</h4>
-                    <p class="text-sm">📍 Via Roma 45, Milano</p>
-                    <p class="text-sm mt-2">📞 +39 02 123 4567</p>
-                    <p class="text-sm mt-2">✉️ info@elhamakytravel.it</p>
-                    <div class="mt-6 flex gap-4">
-                        <i class="fa-brands fa-instagram text-2xl hover:text-white cursor-pointer"></i>
-                        <i class="fa-brands fa-facebook text-2xl hover:text-white cursor-pointer"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-16 pt-8 text-xs flex flex-col md:flex-row justify-between items-center">
-                <p>© 2026 El Hamaky Travel Srl - P.IVA 12345678901</p>
-                <p class="mt-4 md:mt-0">Sito creato per dimostrazione • Tutti i prezzi sono indicativi</p>
-            </div>
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-2xl font-bold text-white mb-2">El Hamaky Travel</p>
+            <p>© 2026 - Tutti i diritti riservati</p>
+            <p class="mt-4 text-sm">Sito pubblicato su Vercel • Aggiornabile in qualsiasi momento</p>
         </div>
     </footer>
-
-    <!-- MODAL PRENOTAZIONE -->
-    <div id="booking-modal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center">
-        <div class="bg-white rounded-3xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-auto">
-            <div class="p-8">
-                <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-3xl font-bold">Prenota il tuo volo</h3>
-                    <button onclick="hideBookingModal()" class="text-4xl leading-none text-gray-400 hover:text-gray-600">×</button>
-                </div>
-                
-                <div id="modal-flight-details" class="mb-8">
-                    <!-- Popolato dinamicamente -->
-                </div>
-
-                <button onclick="completeBooking()" 
-                        class="w-full py-6 bg-emerald-600 hover:bg-emerald-700 text-white text-xl font-semibold rounded-3xl">
-                    Procedi al pagamento sicuro
-                </button>
-                <p class="text-center text-xs text-gray-500 mt-6">Pagamenti protetti con SSL • Cancellazione gratuita fino a 48h</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Mock data voli
-        let flights = [
-            {
-                id: 1,
-                from: "FCO",
-                to: "JFK",
-                departure: "2026-06-15 10:30",
-                arrival: "2026-06-15 14:45",
-                duration: "9h 15m",
-                price: 489,
-                airline: "ITA Airways",
-                stops: 0,
-                logo: "🇮🇹"
-            },
-            {
-                id: 2,
-                from: "MXP",
-                to: "DXB",
-                departure: "2026-06-16 22:10",
-                arrival: "2026-06-17 06:55",
-                duration: "6h 45m",
-                price: 329,
-                airline: "Emirates",
-                stops: 0,
-                logo: "🇦🇪"
-            },
-            {
-                id: 3,
-                from: "FCO",
-                to: "CAI",
-                departure: "2026-06-14 08:20",
-                arrival: "2026-06-14 12:10",
-                duration: "3h 50m",
-                price: 189,
-                airline: "EgyptAir",
-                stops: 0,
-                logo: "🇪🇬"
-            },
-            {
-                id: 4,
-                from: "NAP",
-                to: "MAD",
-                departure: "2026-06-18 15:45",
-                arrival: "2026-06-18 18:30",
-                duration: "2h 45m",
-                price: 109,
-                airline: "Ryanair",
-                stops: 0,
-                logo: "🇪🇸"
-            }
-        ]
-
-        const destinations = [
-            {name: "New York", code: "JFK", price: "489€", img: "https://picsum.photos/id/1015/400/300"},
-            {name: "Dubai", code: "DXB", price: "329€", img: "https://picsum.photos/id/1016/400/300"},
-            {name: "Il Cairo", code: "CAI", price: "189€", img: "https://picsum.photos/id/133/400/300"},
-            {name: "Londra", code: "LHR", price: "149€", img: "https://picsum.photos/id/201/400/300"},
-            {name: "Parigi", code: "CDG", price: "99€", img: "https://picsum.photos/id/251/400/300"},
-            {name: "Tokyo", code: "HND", price: "689€", img: "https://picsum.photos/id/870/400/300"}
-        ]
-
-        // Aggiorna data ultimo aggiornamento
-        function updateLastUpdate() {
-            const now = new Date()
-            document.getElementById('last-update').textContent = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'})
-        }
-
-        // Render flights
-        function renderFlights(filteredFlights = flights) {
-            const container = document.getElementById('flights-container')
-            container.innerHTML = ''
-
-            filteredFlights.forEach(flight => {
-                const card = document.createElement('div')
-                card.className = `flight-card bg-white border border-gray-100 rounded-3xl overflow-hidden`
-                card.innerHTML = `
-                    <div class="p-6">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <div class="flex items-center gap-3">
-                                    <span class="text-3xl">${flight.logo}</span>
-                                    <div>
-                                        <p class="font-semibold">${flight.airline}</p>
-                                        <p class="text-sm text-gray-500">${flight.from} → ${flight.to}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-3xl font-bold text-amber-600">${flight.price}€</p>
-                                <p class="text-xs text-gray-500">a persona</p>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8 flex justify-between items-center">
-                            <div>
-                                <p class="text-sm text-gray-500">Partenza</p>
-                                <p class="font-semibold">${flight.departure}</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-amber-500 text-xl">✈️</div>
-                                <p class="text-xs font-medium text-gray-400">${flight.duration}</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-sm text-gray-500">Arrivo</p>
-                                <p class="font-semibold">${flight.arrival}</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-50 border-t p-5 flex items-center justify-between">
-                        <div class="text-xs">
-                            <span class="px-3 py-1 bg-white rounded-full">${flight.stops === 0 ? 'Diretto' : flight.stops + ' scali'}</span>
-                        </div>
-                        <button onclick="selectFlight(${flight.id})" 
-                                class="bg-amber-600 hover:bg-amber-700 px-8 py-3 text-white text-sm font-semibold rounded-2xl transition">
-                            Prenota
-                        </button>
-                    </div>
-                `
-                container.appendChild(card)
-            })
-        }
-
-        // Render destinations
-        function renderDestinations() {
-            const container = document.querySelector('#destinazioni .grid')
-            container.innerHTML = ''
-            
-            destinations.forEach(dest => {
-                const div = document.createElement('div')
-                div.className = "group cursor-pointer"
-                div.innerHTML = `
-                    <div class="relative rounded-3xl overflow-hidden h-52">
-                        <img src="${dest.img}" class="w-full h-full object-cover transition group-hover:scale-110" alt="${dest.name}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4 text-white">
-                            <p class="font-semibold text-xl">${dest.name}</p>
-                            <p class="text-amber-400">da ${dest.price}</p>
-                        </div>
-                    </div>
-                `
-                container.appendChild(div)
-            })
-        }
-
-        // Cerca voli
-        window.searchFlights = function() {
-            const from = document.getElementById('from').value
-            const to = document.getElementById('to').value
-            
-            const filtered = flights.filter(f => 
-                (f.from === from || !from) && (f.to === to || !to)
-            )
-            
-            renderFlights(filtered.length > 0 ? filtered : flights)
-            
-            // Scroll alla sezione voli
-            document.getElementById('voli').scrollIntoView({ behavior: 'smooth' })
-        }
-
-        // Seleziona volo per modal
-        window.selectFlight = function(id) {
-            const flight = flights.find(f => f.id === id)
-            if (!flight) return
-            
-            const modalContent = document.getElementById('modal-flight-details')
-            modalContent.innerHTML = `
-                <div class="border rounded-2xl p-6 mb-6">
-                    <div class="flex justify-between">
-                        <div>
-                            <p class="font-mono text-sm">${flight.from} → ${flight.to}</p>
-                            <p class="text-2xl font-bold">${flight.departure}</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-emerald-600 font-semibold">${flight.price} €</p>
-                            <p class="text-xs text-gray-500">per adulto</p>
-                        </div>
-                    </div>
-                    <div class="mt-4 flex items-center gap-4 text-sm text-gray-600">
-                        <span>${flight.airline}</span>
-                        <span class="text-amber-500">•</span>
-                        <span>${flight.duration}</span>
-                    </div>
-                </div>
-                
-                <div class="text-sm space-y-4">
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Passeggeri</span>
-                        <span class="font-medium">2 Adulti</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Classe</span>
-                        <span class="font-medium">Economy</span>
-                    </div>
-                    <div class="flex justify-between border-t pt-4 font-semibold">
-                        <span>Totale</span>
-                        <span class="text-2xl">${flight.price * 2} €</span>
-                    </div>
-                </div>
-            `
-            document.getElementById('booking-modal').classList.remove('hidden')
-            document.getElementById('booking-modal').classList.add('flex')
-        }
-
-        window.hideBookingModal = function() {
-            document.getElementById('booking-modal').classList.add('hidden')
-            document.getElementById('booking-modal').classList.remove('flex')
-        }
-
-        window.completeBooking = function() {
-            hideBookingModal()
-            alert("🎉 Prenotazione confermata!\n\nRiceverai un'email con tutti i dettagli e la carta d'imbarco entro pochi minuti.")
-        }
-
-        // Aggiorna voli (simula nuovi voli)
-        window.refreshFlights = function() {
-            // Aggiunge un nuovo volo casuale
-            const newFlight = {
-                id: Date.now(),
-                from: "FCO",
-                to: ["JFK","DXB","CAI","MAD"][Math.floor(Math.random()*4)],
-                departure: "2026-06-20 19:45",
-                arrival: "2026-06-21 03:20",
-                duration: "7h 35m",
-                price: Math.floor(Math.random() * 400) + 150,
-                airline: ["ITA Airways", "Emirates", "Lufthansa", "Turkish Airlines"][Math.floor(Math.random()*4)],
-                stops: Math.random() > 0.7 ? 1 : 0,
-                logo: "🌍"
-            }
-            flights.unshift(newFlight)
-            renderFlights()
-            updateLastUpdate()
-            
-            const notif = document.createElement('div')
-            notif.className = "fixed bottom-8 right-8 bg-emerald-600 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3"
-            notif.innerHTML = `✅ Nuovi voli caricati!`
-            document.body.appendChild(notif)
-            
-            setTimeout(() => notif.remove(), 3000)
-        }
-
-        function setTripType(n) {
-            document.querySelectorAll('#home button').forEach((btn, i) => {
-                if (i === n) {
-                    btn.classList.add('bg-amber-100', 'text-amber-700')
-                } else {
-                    btn.classList.remove('bg-amber-100', 'text-amber-700')
-                }
-            })
-        }
-
-        function showSection(section) {
-            if (section === 'voli') {
-                document.getElementById('voli').scrollIntoView({ behavior: 'smooth' })
-            } else if (section === 'destinazioni') {
-                document.getElementById('destinazioni').scrollIntoView({ behavior: 'smooth' })
-            }
-        }
-
-        function toggleLanguage() {
-            alert("🌍 Il sito è già in italiano.\n\nVersione inglese disponibile a breve!")
-        }
-
-        function showLoginModal() {
-            alert("🔑 Area clienti in fase di sviluppo.\n\nPer ora puoi prenotare direttamente dal sito!")
-        }
-
-        window.showBookingModal = function() {
-            alert("Seleziona un volo dalla sezione 'Voli in evidenza' per procedere alla prenotazione.")
-        }
-
-        // Inizializzazione
-        function init() {
-            renderFlights()
-            renderDestinations()
-            updateLastUpdate()
-            
-            // Aggiornamento automatico ogni 45 secondi (simulazione)
-            setInterval(() => {
-                if (Math.random() > 0.6) refreshFlights()
-            }, 45000)
-            
-            // Tailwind script già caricato
-            console.log('%c✅ El Hamaky Travel - Sito pronto!', 'color: #f59e0b; font-size: 14px; font-weight: bold')
-        }
-
-        window.onload = init
-    </script>
 </body>
 </html>
